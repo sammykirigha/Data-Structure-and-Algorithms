@@ -56,3 +56,48 @@ function getNthFiboBetter(num, lastNum, nextNum) {
   if (num == 1) return nextNum;
   return getNthFiboBetter(num - 1, nextNum, lastNum + nextNum);
 }
+
+// implement palidrome using recursion
+
+function isPalidrome(string){
+  let str = string.toLowwerCase()
+  if(str.length === 1) return true
+  if(str[0] !== str[str.length - 1]) return false
+  return isPalidrome(str.slice(1, str.length - 1))
+}
+
+//implement palidrome using two pointer
+function getPalidron(string){
+  let str = string.toLowwerCase();
+ 
+  for(let i = 0; i < str.length; i++){
+    let left = i;
+    let right = str.length - 1 - i
+    if(str[left] !== str[right]) return false
+  }
+  return true
+}
+
+//permutation implementation using recursion
+ let array = [1,2,3]
+
+function getPermutation(array){
+  let foundPermutation = [];
+
+  function perms(subArr, currentPerm){
+    if(subArr.length === 0){
+      foundPermutation.push(currentPerm)
+    }
+
+    for(let i = 0; i < subArr.length; i++){
+
+      let newSubArr = subArr.slice(0, i).concat(subArr.slice(i + 1))
+      
+      let newCurrentPerm = currentPerm.concat(subArr[i])
+
+      perms(newSubArr, newCurrentPerm)
+    }
+  }
+
+  perms(array, [])
+}
